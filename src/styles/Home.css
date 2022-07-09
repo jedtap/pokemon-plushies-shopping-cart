@@ -1,0 +1,29 @@
+.home-screen {
+  width: 100vw;
+  height: 95vh;
+
+  background: url("../media/store.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-screen-elements {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-screen-text {
+  color: white;
+  font-weight: 500;
+}
+
+.home-screen-button {
+  font-size: 30px;
+}
