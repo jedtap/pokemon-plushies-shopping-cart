@@ -6,9 +6,12 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css';
 // import Footer from './Footer';
 // import Cart from './Cart';
 // import CartItem from '../helpers/CartItem';
+import './styles/App.css'
+
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Shop from './components/Shop';
+import Products from '../src/helpers/Products';
 
 
 const App = () => {
@@ -59,11 +62,14 @@ const App = () => {
       <NavBar openCart={toggleCart} itemCount={itemCount} />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/shop' element={<Shop updateCart={updateCart} />} />
+        <Route path='/shop' element={<>
+          <div className="shop-gallery"> {Products().map((item) => <Shop item={item} />)} </div>
+        </>} />
         {/* <Route path='/shop/:productName' element={<Product updateCart={updateCart} />} /> */}
 
       </Routes>
-    
+
+      {/* <Shop updateCart={updateCart} /> */}    
       {/* <Footer /> */}
       {/* <Cart items={cartItems} itemCount={itemCount} open={cartOpen} closeCart={toggleCart} updateCart={updateCart} removeCartItem={removeCartItem} /> */}
   

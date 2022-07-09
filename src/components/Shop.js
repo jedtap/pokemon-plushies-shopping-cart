@@ -1,68 +1,14 @@
 import '../styles/Shop.css';
 // import { Link } from "react-router-dom";
-// import products from '../helpers/Product';
+// import Products from '../helpers/Products';
 
-const Shop = ({ updateCart }) => {
+const Shop = ({ item }) => {
   return (<>
-    <div className="shop-gallery">
-
-      <div className="shop-item">
-        <div className="shop-item-image">Image goes here</div>
-        <h2 className="shop-item-name">Multi-Purpose Grinding Red Speed Coated 64mm Flat</h2>
-        <div className="shop-item-price">$ 69.00</div>
-        <button type="button" className="btn btn-danger">Add to cart</button>
-      </div>
-
-
-      <div className="shop-item">
-        <div className="shop-item-image">Image goes here</div>
-        <h2 className="shop-item-name">Multi-Purpose Grinding Red Speed Coated 64mm Flat</h2>
-        <div className="shop-item-price">$ 69.00</div>
-        <button type="button" className="btn btn-danger">Add to cart</button>
-      </div>
-
-      <div className="shop-item">
-        <div className="shop-item-image">Image goes here</div>
-        <h2 className="shop-item-name">Multi-Purpose Grinding Red Speed Coated 64mm Flat</h2>
-        <div className="shop-item-price">$ 69.00</div>
-        <button type="button" className="btn btn-danger">Add to cart</button>
-      </div>
-
-
-      <div className="shop-item">
-        <div className="shop-item-image">Image goes here</div>
-        <h2 className="shop-item-name">Multi-Purpose Grinding Red Speed Coated 64mm Flat</h2>
-        <div className="shop-item-price">$ 69.00</div>
-        <button type="button" className="btn btn-danger">Add to cart</button>
-      </div>
-
-
-      <div className="shop-item">
-        <div className="shop-item-image">Image goes here</div>
-        <h2 className="shop-item-name">Multi-Purpose Grinding Red Speed Coated 64mm Flat</h2>
-        <div className="shop-item-price">$ 69.00</div>
-        <button type="button" className="btn btn-danger">Add to cart</button>
-      </div>
-
-
-      <div className="shop-item">
-        <div className="shop-item-image">Image goes here</div>
-        <h2 className="shop-item-name">Multi-Purpose Grinding Red Speed Coated 64mm Flat</h2>
-        <div className="shop-item-price">$ 69.00</div>
-        <button type="button" className="btn btn-danger">Add to cart</button>
-      </div>
-
-
-      <div className="shop-item">
-        <div className="shop-item-image">Image goes here</div>
-        <h2 className="shop-item-name">Multi-Purpose Grinding Red Speed Coated 64mm Flat</h2>
-        <div className="shop-item-price">$ 69.00</div>
-        <button type="button" className="btn btn-danger">Add to cart</button>
-      </div>
-
-
-
-
+    <div className="shop-item" key={item.id}>
+      <img src={item.img} alt={item.alt} className='shop-item-image' />
+      <h2 className="shop-item-name">{item.name}</h2>
+      <div className="shop-item-price">$ {item.price}</div>
+      <button type="button" className="btn btn-danger">Add to cart</button>
     </div>
   </>);
 };
