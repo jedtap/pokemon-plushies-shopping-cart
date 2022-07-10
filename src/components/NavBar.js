@@ -10,7 +10,7 @@ const NavBar = ({ openCart, itemCount }) => {
     <nav className="navbar navbar-dark navbar-expand-lg">
       <div className="container-fluid">
 
-        <Link to='/' className="navbar-brand">Poke-plushies</Link>
+        <Link to='/' className="navbar-brand">Poké-plushies</Link>
 
         <div className="navbar navbar-dark">
           <ul className="navbar-nav">

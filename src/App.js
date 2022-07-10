@@ -12,6 +12,8 @@ import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Shop from './components/Shop';
 import Products from '../src/helpers/Products';
+import Cart from './components/Cart';
+
 
 
 const App = () => {
@@ -20,7 +22,12 @@ const App = () => {
   const [cartItems, setCartItems] = useState([]);
   const [itemCount, setItemCount] = useState(0);
 
-  const toggleCart = () => setcartOpen(!cartOpen);
+  // const toggleCart = () => setcartOpen(!cartOpen);
+  const toggleCart = () => {
+    const overlay = document.querySelector('.cart-overlay');
+    overlay.style.display === 'none' ? overlay.style.display = 'flex' : overlay.style.display = 'none';
+  };
+
 
   const updateCart = (product, quantity, open) => {
     const item = cartItems.find((item) => item.product === product);
@@ -72,7 +79,7 @@ const App = () => {
       {/* <Shop updateCart={updateCart} /> */}    
       {/* <Footer /> */}
       {/* <Cart items={cartItems} itemCount={itemCount} open={cartOpen} closeCart={toggleCart} updateCart={updateCart} removeCartItem={removeCartItem} /> */}
-  
+      <Cart closeCart={toggleCart} />
     </BrowserRouter>
   </>);
 };
