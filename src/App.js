@@ -15,7 +15,7 @@ import Products from '../src/helpers/Products';
 import Cart from './components/Cart';
 
 const App = () => {
-  // const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const [itemCount, setItemCount] = useState(0);
 
   const toggleCart = () => {
@@ -23,27 +23,23 @@ const App = () => {
     overlay.style.display === 'none' ? overlay.style.display = 'flex' : overlay.style.display = 'none';
   };
 
-  // const addToCart = (id) => {
-    // if(cartItems.find(x => x.id === id)) {
-    //   // If the item is already in the cart, remove it and add count 1
-    //   const oldItems = cartItems;
-    //   let clickedItem = cartItems.find(x => x.id === id);
-    //   clickedItem.quantity += 1;
+  const addToCart = (item) => {
+    if(cartItems.find(x => x.key === item.key)) {
+      // If the item is already in the cart, remove it and add count 1
+      const oldItems = cartItems;
+      let clickedItem = cartItems.find(x => x.key === item.key);
+      clickedItem.quantity += 1;
 
-    //   const newItems = oldItems.filter(x => x.id !== id);
-    //   setCartItems(newItems.concat(clickedItem));
+      const newItems = oldItems.filter(x => x.key !== item.key);
+      setCartItems(newItems.concat(clickedItem));
 
-    //   // Update itemcount
-    //   setItemCount(itemCount+1);
-
-    // } else {
-    //   setCartItems(cartItems.concat( { id: id, quantity: 1 }));
-    //   setItemCount(itemCount+1);
-    // }
-    // console.log(1);
-    // setItemCount(itemCount+1);
-    // console.log(1);
-  // }
+      // Update itemcount
+      setItemCount(itemCount+1);
+    } else {
+      setCartItems(cartItems.concat( { key: item.key, quantity: 1 }));
+      setItemCount(itemCount+1);
+    }
+  }
 
 
   // const updateCart = (product, quantity, open) => {
@@ -87,7 +83,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/shop' element={<>
-          <div className="shop-gallery"> {Products().map((item) => <Shop item={item} />)} </div>
+          <div className="shop-gallery"> {Products().map((item) => <Shop item={item} addToCart={addToCart}/>)} </div>
         </>} />
         {/* <Route path='/shop/:productName' element={<Product updateCart={updateCart} />} /> */}
 
