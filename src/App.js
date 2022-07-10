@@ -92,7 +92,7 @@ const App = () => {
       {/* <Shop updateCart={updateCart} /> */}    
       {/* <Footer /> */}
       {/* <Cart items={cartItems} itemCount={itemCount} open={cartOpen} closeCart={toggleCart} updateCart={updateCart} removeCartItem={removeCartItem} /> */}
-      <Cart closeCart={toggleCart} />
+      <Cart closeCart={toggleCart} itemCount={itemCount} />
     </BrowserRouter>
   </>);
 };
