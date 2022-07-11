@@ -1,11 +1,7 @@
-// import { useState } from 'react';
 import '../styles/NavBar.css';
 import { Link } from "react-router-dom";
 
 const NavBar = ({ openCart, itemCount }) => {
-  // const [links, setLinks] = useState(false);
-  // const headerLinks = (links) ? 'HeaderLinks Open' : 'HeaderLinks';
-
   return (<>
     <nav className="navbar navbar-dark navbar-expand-lg">
       <div className="container-fluid">
@@ -32,14 +28,3 @@ const NavBar = ({ openCart, itemCount }) => {
 };
 
 export default NavBar;
-
-
-// <div className={headerLinks}>
-//    <Link to='/shop' onClick={() => setLinks(false)}>Shop</Link>
-//   <Link to='/' onClick={() => setLinks(false)}>Home</Link>
-// </div>
-
-// <button type='button' className='Button TransparentButton CartButton' onClick={openCart}>
-//   <i className='fa-solid fa-cart-shopping'></i>
-//   <span className='CartNum'>{itemCount}</span>
-// </button>

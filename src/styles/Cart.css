@@ -76,6 +76,10 @@
   grid-area: 2 / 2 / 3 / 3;
 }
 
+:hover.cart-item-hover {
+  cursor: pointer;
+}
+
 .cart-item-quantity > div {
   margin: 0 5px;
   padding: 0 5px;

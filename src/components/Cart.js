@@ -1,7 +1,6 @@
 import '../styles/Cart.css'
 
-const Cart = ({ closeCart, itemCount, cartItems }) => {
-
+const Cart = ({ closeCart, itemCount, cartItems, lessItem, moreItem, removeItem }) => {
 
   const displayCartItems = (
     (itemCount > 0) ? cartItems.map((item) =>
@@ -13,16 +12,15 @@ const Cart = ({ closeCart, itemCount, cartItems }) => {
           <h6>$ {item.price}</h6>
         </div>
         <div className='cart-item-quantity'>
-            <div>—</div>
-            <div> {item.quantity} </div>
-            <div> + </div>
-            <div> Remove </div>
+          <div className='cart-item-hover' onClick={() => lessItem(item)}>—</div>
+          <div> {item.quantity} </div>
+          <div className='cart-item-hover' onClick={() => moreItem(item)}> + </div>
+          <div className='cart-item-hover' onClick={() => removeItem(item)}> Remove </div>
         </div>
       </div>
 
     ) : null
   );
-
 
   return (<>
     <div className='cart-overlay'>

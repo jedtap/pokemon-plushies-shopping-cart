@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
-
-// import Product from './Product';
-// import Footer from './Footer';
-// import Cart from './Cart';
-// import CartItem from '../helpers/CartItem';
 import './styles/App.css'
 
 import NavBar from './components/NavBar';
@@ -41,41 +36,51 @@ const App = () => {
     }
   }
 
+  const lessItem = (item) => {
+    const oldItems = cartItems;
+    let clickedItem = cartItems.find(x => x.key === item.key);
+    clickedItem.quantity -= 1;
+    setItemCount(itemCount-1);
 
-  // const updateCart = (product, quantity, open) => {
-  //   const item = cartItems.find((item) => item.product === product);
-  //   if (item) {
-  //     item.updateQuantity(quantity);
-  //     if (item.quantity < 1) { removeCartItem(item.product.name, 1); }
-  //   } else {
-  //     // const newItem = new CartItem(product, quantity);
-  //     // setCartItems(cartItems.concat(newItem));
-  //   }
-  //   setItemCount(itemCount + parseInt(quantity));
-  //   if (open) { toggleCart() }
-  // };
+    const newItems = oldItems.filter(x => x.key !== item.key);
+    clickedItem.quantity <= 0 ? setCartItems(newItems) : setCartItems(newItems.concat(clickedItem));
+  }
 
-  // const removeCartItem = (productName, quantity) => {
-  //   setCartItems(cartItems.filter((item) => item.product.name !== productName ));
-  //   setItemCount(itemCount - quantity);
-  // };
+  const moreItem = (item) => {
+    const oldItems = cartItems;
+    let clickedItem = cartItems.find(x => x.key === item.key);
+    clickedItem.quantity += 1;
+    setItemCount(itemCount+1);
 
-  // // Fetch cart info from localStorage on mount
-  // useEffect(() => {
-  //   const savedItems = JSON.parse(localStorage.getItem('CartItems'));
-  //   const savedCount = parseInt(localStorage.getItem('CartCount'));
-  //   if (savedItems) {
-  //     setCartItems(savedItems);
-  //     setItemCount(savedCount);
-  //   }
-  // }, []);
+    const newItems = oldItems.filter(x => x.key !== item.key);
+    setCartItems(newItems.concat(clickedItem));
+  }
 
-  // // Save cart to localStorage on cartItems/itemCount update
-  // useEffect(() => {
-  //   localStorage.setItem('CartItems', JSON.stringify(cartItems));
-  //   localStorage.setItem('CartCount', itemCount);
-  // }, [cartItems, itemCount]);
+  const removeItem = (item) => {
+    const oldItems = cartItems;
+    let clickedItem = cartItems.find(x => x.key === item.key);
+    setItemCount(itemCount-clickedItem.quantity);
 
+    const newItems = oldItems.filter(x => x.key !== item.key);
+    setCartItems(newItems);
+  }
+
+  // Fetch cart info from localStorage on mount
+  useEffect(()=>{
+    const storedItemCount = JSON.parse(window.localStorage.getItem("storedItemCount"));
+    const storedCartItems = JSON.parse(window.localStorage.getItem("storedCartItems"));
+    if (storedItemCount) { 
+      setItemCount(storedItemCount);
+      setCartItems(storedCartItems);
+    }
+  },[])
+
+  // Save cart to localStorage on itemCount/cartItems update
+  useEffect(()=>{
+    window.localStorage.clear();
+    window.localStorage.setItem("storedItemCount", JSON.stringify(itemCount));
+    window.localStorage.setItem("storedCartItems", JSON.stringify(cartItems));
+  },[itemCount, cartItems]);
 
   return (<>
     <BrowserRouter> {/*basename={process.env.PUBLIC_URL} */}
@@ -92,7 +97,7 @@ const App = () => {
       {/* <Shop updateCart={updateCart} /> */}    
       {/* <Footer /> */}
       {/* <Cart items={cartItems} itemCount={itemCount} open={cartOpen} closeCart={toggleCart} updateCart={updateCart} removeCartItem={removeCartItem} /> */}
-      <Cart closeCart={toggleCart} itemCount={itemCount} cartItems={cartItems} />
+      <Cart closeCart={toggleCart} itemCount={itemCount} cartItems={cartItems} lessItem={lessItem} moreItem={moreItem} removeItem={removeItem} />
     </BrowserRouter>
   </>);
 };
