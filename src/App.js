@@ -36,7 +36,7 @@ const App = () => {
       // Update itemcount
       setItemCount(itemCount+1);
     } else {
-      setCartItems(cartItems.concat( { key: item.key, quantity: 1 }));
+      setCartItems(cartItems.concat( { key: item.key, quantity: 1, name: item.name, price: item.price, img: item.img, alt: item.alt }));
       setItemCount(itemCount+1);
     }
   }
@@ -92,7 +92,7 @@ const App = () => {
       {/* <Shop updateCart={updateCart} /> */}    
       {/* <Footer /> */}
       {/* <Cart items={cartItems} itemCount={itemCount} open={cartOpen} closeCart={toggleCart} updateCart={updateCart} removeCartItem={removeCartItem} /> */}
-      <Cart closeCart={toggleCart} itemCount={itemCount} />
+      <Cart closeCart={toggleCart} itemCount={itemCount} cartItems={cartItems} />
     </BrowserRouter>
   </>);
 };
